@@ -22,6 +22,8 @@ import com.tulane.base.ListNode;
  * 你的算法只能使用常数的额外空间。
  * 你不能只是单纯的改变节点内部的值，而是需要实际的进行节点交换。
  */
+
+//TODO 需要加强!
 public class ReverseKGroup {
 
     public static void main(String[] args) {
@@ -31,17 +33,55 @@ public class ReverseKGroup {
         ListNode l4 = new ListNode(4);
         ListNode l5 = new ListNode(5);
         ListNode l6 = new ListNode(6);
+        ListNode l7 = new ListNode(7);
 
         l1.next = l2;
         l2.next = l3;
         l3.next = l4;
         l4.next = l5;
         l5.next = l6;
+        l6.next = l7;
 
-        ListNode n = new ReverseKGroup().reverseK(l1, 2);
+        ListNode n = new ReverseKGroup().reverseKGroup(l1, 3);
 
         show(n);
     }
+
+    /**
+     * 将数组分为n个段, 每个都长k
+     *
+     * @param head
+     * @param k
+     * @return
+     */
+    // a->b->c->d->e->f->stop 假设k=3
+    public ListNode reverseKGroup(ListNode head, int k) {
+        int i = k;
+        ListNode next = head;
+        if(next == null) return head;
+        while (--i >= 0) {
+            if(next == null) return head;
+            next = next.next;
+        }
+        // next: d->e->f
+        ListNode groupFirst =  reverseKGroup(next, k);
+        // groupFirst: f   head: a->b->c
+        ListNode first = _reverseK(head, k);
+        // first: c    head: a->b->c
+        head.next = groupFirst;
+        //  a -> f  =>   c->b->a->f->e->d
+        // first 与 groupFirst 都为K段链的表尾, 被反转到了表头
+        return first;
+    }
+
+    private ListNode _reverseK(ListNode head, int k){
+        if(--k == 0) return head;
+        ListNode first = _reverseK(head.next, k);
+        head.next.next = head;
+        head.next = null;
+        return first;
+    }
+
 
     public static void show(ListNode n) {
         while (n != null) {
@@ -50,17 +90,4 @@ public class ReverseKGroup {
         }
     }
 
-    public ListNode reverseKGroup(ListNode head, int k) {
-        ListNode node = reverseK(head, k);
-//        head.
-        return null;
-    }
-
-    private ListNode reverseK(ListNode head, int k) {
-        if(--k == 0) return head;
-        ListNode start = reverseK(head.next, k);
-        head.next.next = head;
-        head.next = null;
-        return start;
-    }
 }

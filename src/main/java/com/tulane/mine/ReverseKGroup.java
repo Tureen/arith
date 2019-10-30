@@ -47,7 +47,7 @@ public class ReverseKGroup {
         l4.next = l5;
         l5.next = l6;
 
-        ListNode n = new ReverseKGroup().reverseKGroup(l1, 3);
+        ListNode n = new ReverseKGroup().reverseKGroup(l1, 2);
 
         show(n);
     }

@@ -47,7 +47,7 @@ package com.tulane.mine;
 public class RemoveDuplicates {
 
     public static void main(String[] args) {
-        int[] nums = {1};
+        int[] nums = {1,2,3,4};
         System.out.println(new RemoveDuplicates().removeDuplicates(nums));
     }
 
