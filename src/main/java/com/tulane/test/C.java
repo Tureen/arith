@@ -22,6 +22,7 @@ public class C {
                 set.add(target - nums[i]);
             }
         }
-        return Arrays.;
+//        return list.toArray();
+        return null;
     }
 }

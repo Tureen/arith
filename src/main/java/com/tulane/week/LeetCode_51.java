@@ -18,6 +18,7 @@ public class LeetCode_51 {
         Set<Integer> pies = new HashSet<>();
         Set<Integer> nas = new HashSet<>();
         _solveNQueens(totalList, n, 0, cols, pies, nas, new ArrayList<>());
+        return null;
     }
 
     private void _solveNQueens(List<List<Integer>> totalList, int n, int i, Set<Integer> cols, Set<Integer> pies, Set<Integer> nas, ArrayList<Integer> list) {
