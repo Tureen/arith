@@ -25,6 +25,6 @@ public class LeetCode_322 {
             }
             dp[i] = res;
         }
-        return dp[amount] == 0 ? -1 : dp[amount]
+        return dp[amount] == 0 ? -1 : dp[amount];
     }
 }
